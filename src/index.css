@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn-hover-style{
+    @apply btn-outline mt-4 border-0 border-b-2 border-l-2 bg-transparent hover:border-0  hover:border-t-2  hover:border-r-2  hover:bg-transparent hover:text-red-700
+}
+.drawer-side a.active {
+    color: rgb(255, 255, 255);
+  }
+.drawer-side a {
+    background-color: transparent;
+  }
+  .my-cart .table{
+    background-color: #D1A054  !important; 
+  }
