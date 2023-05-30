@@ -1,10 +1,11 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { FaCalendarAlt, FaHome, FaMailBulk, FaRegBookmark, FaShoppingBag, FaShoppingCart, FaStar, FaWallet } from "react-icons/fa";
-import useCart from "../customHooks/useCart";
+import { FaHome, FaMailBulk, FaShoppingBag,    } from "react-icons/fa";
+import Admin from "../Dashbord/NavMenu/Admin";
+import UserNavbars from "../Dashbord/NavMenu/UserNavbars";
 
 
 const Dashbord = () => {
-    const [cart] = useCart()
+    const isAdmin = true;
     return (
         <div className="container mx-auto max-w-7xl">
             <div className="drawer drawer-mobile">
@@ -17,17 +18,10 @@ const Dashbord = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 bg-[#D1A054] text-base-content space-y-1">
+                    <ul className="menu p-4 w-80 bg-[#D1A054] uppercase text-base-content space-y-1">
                         {/* <!-- Sidebar content here --> */}
-                        <li><NavLink to='/dashbord/home'><FaHome /> USER HOME </NavLink></li>
-                        <li><NavLink to='/dashbord/reservation'> <FaCalendarAlt /> RESERVATION </NavLink></li>
-                        <li><NavLink to='/dashbord/history'> <FaWallet />  PAYMENT HISTORY </NavLink></li>
-                        <li className=""><NavLink to='/dashbord/mycart'> <FaShoppingCart /> MY CARTS<span className="badge text-white bg-pink-500 border-0 -ml-2 ">+{cart?.length || 0}</span>  </NavLink>
 
-                        </li>
-                        <li><NavLink to='/dashbord/addreview' ><FaStar />  ADD REVIEW </NavLink></li>
-                        <li><NavLink to='/dashbord/booking'> <FaRegBookmark/> MY BOOKING </NavLink></li>
-
+                        {isAdmin ? <Admin></Admin> : <UserNavbars></UserNavbars>}
 
                         <div className="divider"></div>
 

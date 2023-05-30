@@ -3,6 +3,7 @@ import { FaFacebookF, FaGithub, FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../AuthProvaiders/AuthProvaiders';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+
 const SocalLogin = () => {
     const navigate = useNavigate();
     const location = useLocation();
@@ -13,7 +14,17 @@ const SocalLogin = () => {
     const handleGoogleLogin = () => {
         googleLogin()
             .then(result => {
-                console.log(result)
+                const loggedUser = result.user;
+                const userinfo = { name: loggedUser.displayName, email: loggedUser.email, userProfile: loggedUser.photoURL };
+                console.log(userinfo)
+
+                fetch('http://localhost:5000/users', {
+                    method: "POST",
+                    headers: { 'content-type': 'application/json' },
+                    body: JSON.stringify(userinfo)
+                })
+                    .then(res => res.json())
+                    .then(() => { })
                 navigate(from, { replace: true });
             })
             .catch(error => {
